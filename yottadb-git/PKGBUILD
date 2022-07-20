@@ -1,6 +1,6 @@
 # Maintainer: Anirudh Rao <anirudh.b.rao@proton.me> 
 pkgname=yottadb-git
-pkgver=r1.34.r90.g19bc6612
+pkgver=r1.35.g19bc6612
 pkgrel=1
 pkgdesc='A multi-language NoSQL database' 
 arch=('x86_64' 'aarch64')

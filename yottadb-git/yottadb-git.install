@@ -1,3 +1,6 @@
+post_install() {
+    post_upgrade "$1"
+}
 post_upgrade() {
     new_release="$(tr -d . <<< $1 | cut -c 1-4)"
     old_release="$(tr -d . <<< $2 | cut -c 1-4)"
@@ -7,5 +10,12 @@ post_upgrade() {
 
     cd ..
     rm -r "yottadb_${new_release}"
-    [ -d "${old_release}" ] && rm -r "${old_release}"
+    if [ -d "${old_release}" ]; then
+        rm -r "${old_release}"
+    fi
+}
+post_remove() {
+    release="$(tr -d . <<< $1 | cut -c 1-4)"
+    rm -r "/usr/lib/yottadb/${release}"
+    rm /usr/share/pkgconfig/yottadb.pc
 }
