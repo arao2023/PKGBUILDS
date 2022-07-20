@@ -10,7 +10,7 @@ post_upgrade() {
 
     cd ..
     rm -r "yottadb_${new_release}"
-    if [ -d "${old_release}" ]; then
+    if [ -d "${old_release}" && "${old_release}" != "${new_release}" ]; then
         rm -r "${old_release}"
     fi
 }
