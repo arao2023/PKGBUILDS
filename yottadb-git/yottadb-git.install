@@ -1,0 +1,11 @@
+post_upgrade() {
+    new_release="$(tr -d . <<< $1 | cut -c 1-4)"
+    old_release="$(tr -d . <<< $2 | cut -c 1-4)"
+
+    cd "/usr/lib/yottadb/yottadb_${new_release}"
+    ./ydbinstall --force-install --installdir="$(realpath ..)/${new_release}" --overwrite-existing
+
+    cd ..
+    rm -r "yottadb_${new_release}"
+    [ -d "${old_release}" ] && rm -r "${old_release}"
+}
